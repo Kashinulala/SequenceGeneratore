@@ -7,18 +7,16 @@
 #include "HeapSort.h"
 #include "QuickSort.h"
 
-using namespace std;
-
-int getSequenceLenght(string file) {
-	ifstream f(file);
+int getSequenceLenght(std::string file) {
+	std::ifstream f(file);
 	int n;
 	f >> n;
 	return n;
 	f.close();
 }
 
-void getSequence(int* arr, string file) {
-	ifstream f(file);
+void getSequence(int* arr, std::string file) {
+	std::ifstream f(file);
 	int n;
 	f >> n;
 	
@@ -28,7 +26,7 @@ void getSequence(int* arr, string file) {
 	f.close();
 }
 
-void testSort(float& time1, float& time2, unsigned& comp1, unsigned& comp2, unsigned& assignment1, unsigned& assignment2, string file) {
+void testQuickSort(float& time, unsigned& comp,unsigned& assignment, unsigned& length, std::string file) {
 
 	int* arr;
 	int n = getSequenceLenght(file);
@@ -38,20 +36,28 @@ void testSort(float& time1, float& time2, unsigned& comp1, unsigned& comp2, unsi
 	clock_t t;
 
 	t = clock();
-	quickSort(arr, 0, n - 1, comp1, assignment1);
-	t = clock() - t;
+	quickSort(arr, 0, n - 1, comp, assignment);
+	time = clock() - t;
+	length = n;
+}
 
-	time1 = t;
+void testIntroSort(float& time, unsigned& comp, unsigned& assignment, std::string file) {
 
-	//////////////////////////////////////////
-
+	int* arr;
+	int n = getSequenceLenght(file);
+	arr = new int[n];
 	getSequence(arr, file);
 
-	//////////////////////////////////////////
+	clock_t t;
 
 	t = clock();
-	introSort(arr, 0, n, comp2, assignment2);
-	t = clock() - t;
+	introSort(arr, 0, n - 1, comp, assignment);
+	time = clock() - t;
 
-	time2 = t;
+	/*std::ofstream f;
+	f.open("111.txt");
+	for (int i = 0; i < n; i++) {
+		f << arr[i] << " ";
+	}
+	f.close();*/
 }

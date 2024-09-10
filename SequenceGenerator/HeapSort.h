@@ -1,10 +1,11 @@
 #pragma once
 
 #include<iostream> 
-using namespace std;
 
 void heapify(int* arr, int n, int i, unsigned& comp, unsigned& assignmentCount)
 {
+    using namespace std;
+
     int largest = i;
     int l = 2 * i + 1;
     int r = 2 * i + 2;
@@ -27,6 +28,8 @@ void heapify(int* arr, int n, int i, unsigned& comp, unsigned& assignmentCount)
 
 void heapSort(int* arr, int n, unsigned& comp, unsigned& assignmentCount)
 {
+    using namespace std;
+
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i, comp, assignmentCount);
 

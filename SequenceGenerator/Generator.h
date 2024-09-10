@@ -5,20 +5,19 @@
 #include <string>
 #include <random>
 
-using namespace std;
-
-
 //n - размерность массива
-void qsortKillSeqGen(int n) {
+void qsortKillSeqGen(int n, std::string dir) {
 
-    string filename = "Medof3_" + to_string(n) + "_" + "1.txt";
+    using namespace std;
+    
+    string filename = dir + "//" + "Medof3_" + to_string(n) + "_" + "1.txt";
     ifstream file(filename);
     int i = 1;
 
     while (!file.fail()) {
         file.close();
         i++;
-        filename = "Medof3_" + to_string(n) + "_" + to_string(i) + ".txt";
+        filename = dir + "//" + "Medof3_" + to_string(n) + "_" + to_string(i) + ".txt";
         file.open(filename); // Открываем новый файл для чтения
     }
 
@@ -71,16 +70,18 @@ void qsortKillSeqGen(int n) {
 }
 
 
-void upSortedSequence(int n) {
+void upSortedSequence(int n, std::string dir) {
 
-    string filename = "Up_" + to_string(n) + "_" + "1.txt";
+    using namespace std;
+
+    string filename = dir + "//" + "Up_" + to_string(n) + "_" + "1.txt";
     ifstream file(filename);
     int i = 1;
 
     while (!file.fail()) {
         file.close();
         i++;
-        filename = "Up_" + to_string(n) + "_" + to_string(i) + ".txt";
+        filename = dir + "//" + "Up_" + to_string(n) + "_" + to_string(i) + ".txt";
         file.open(filename); // Открываем новый файл для чтения
     }
 
@@ -95,16 +96,18 @@ void upSortedSequence(int n) {
 
 
 
-void downSortedSequence(int n) {
+void downSortedSequence(int n, std::string dir) {
 
-    string filename = "Down_" + to_string(n) + "_" + "1.txt";
+    using namespace std;
+
+    string filename = dir + "//" + "Down_" + to_string(n) + "_" + "1.txt";
     ifstream file(filename);
     int i = 1;
 
     while (!file.fail()) {
         file.close();
         i++;
-        filename = "Down_" + to_string(n) + "_" + to_string(i) + ".txt";
+        filename = dir + "//" + "Down_" + to_string(n) + "_" + to_string(i) + ".txt";
         file.open(filename); // Открываем новый файл для чтения
     }
 
@@ -118,7 +121,9 @@ void downSortedSequence(int n) {
 }
 
 
-void randSequence(int n) {
+void randSequence(int n, std::string dir) {
+
+    using namespace std;
 
     std::random_device rd;  // Устройство для генерации случайных чисел
     std::mt19937 gen(rd()); // Инициализация генератора случайных чисел с seed от rd()
@@ -127,14 +132,14 @@ void randSequence(int n) {
     std::uniform_int_distribution<> distrib(min_value, max_value); // Равномерное распределение в заданном диапазоне
     int random_value = 0;
 
-    string filename = "Rand_" + to_string(n) + "_" + "1.txt";
+    string filename = dir + "//" + "Rand_" + to_string(n) + "_" + "1.txt";
     ifstream file(filename);
     int i = 1;
 
     while (!file.fail()) {
         file.close();
         i++;
-        filename = "Rand_" + to_string(n) + "_" + to_string(i) + ".txt";
+        filename = dir + "//" + "Rand_" + to_string(n) + "_" + to_string(i) + ".txt";
         file.open(filename); // Открываем новый файл для чтения
     }
 
@@ -145,4 +150,8 @@ void randSequence(int n) {
         out << distrib(gen) << " ";
     }
     out.close();
+}
+
+void insortSequence(int n, std::string dir) {
+
 }
