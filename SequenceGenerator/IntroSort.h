@@ -4,13 +4,10 @@
 #include "QuickSort.h"
 #include "HeapSort.h"
 
-using namespace std;
-
-using namespace std;
-
 
 void InsertionSort(int arr[], int begin, int end, unsigned& comp, unsigned& assignmentCount)
 {
+    using namespace std;
 
     int left = begin;
     int right = end;
@@ -95,8 +92,9 @@ void InsertionSort(int arr[], int begin, int end, unsigned& comp, unsigned& assi
  
 void IntrosortUtil(int arr[], int begin, int end, int depthLimit, unsigned& comp, unsigned& assignmentCount) {
 
-    int size = end - begin;
+    using namespace std;
 
+    int size = end - begin;
     if (size < 16)
     {
         InsertionSort(arr, begin, end, comp, assignmentCount);
@@ -111,19 +109,19 @@ void IntrosortUtil(int arr[], int begin, int end, int depthLimit, unsigned& comp
         heapSort(arr + begin, end - begin, comp, assignmentCount);
         return;
     }
- 
-    int partitionPoint = partition(arr, begin, end, comp, assignmentCount);
-    IntrosortUtil(arr, begin, partitionPoint - 1, depthLimit - 1, comp, assignmentCount);
-    IntrosortUtil(arr, partitionPoint + 1, end, depthLimit - 1, comp, assignmentCount);
-
+    if (begin < end) {
+        int partitionPoint = partition(arr, begin, end, comp, assignmentCount);
+        IntrosortUtil(arr, begin, partitionPoint - 1, depthLimit - 1, comp, assignmentCount);
+        IntrosortUtil(arr, partitionPoint + 1, end, depthLimit - 1, comp, assignmentCount);
+    }
     return;
 }
 
 void introSort(int arr[], int begin, int end, unsigned& comp, unsigned& assignmentCount)
 {
+    using namespace std;
+
     int depthLimit = 2 * log(end - begin);
-
     IntrosortUtil(arr, begin, end, depthLimit, comp, assignmentCount);
-
     return;
 }
